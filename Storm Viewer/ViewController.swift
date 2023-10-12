@@ -9,9 +9,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    //used to add to navigation controller
     let VC = UIViewController()
+    
+    //declare tableview
     let tableView = UITableView()
     
+    //array to store pictures names
     var pictures: [String] = []
     
     override func viewDidLoad() {
@@ -23,9 +27,11 @@ class ViewController: UIViewController {
         let navigationController = UINavigationController(rootViewController: VC)
         
         setUpTableView()
+        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Picture")
         self.view.addSubview(tableView)
         
+        //file manager
         let fm = FileManager.default
         let path = Bundle.main.bundlePath
         let items = try! fm.contentsOfDirectory(atPath: path)
