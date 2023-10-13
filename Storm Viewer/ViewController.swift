@@ -79,6 +79,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
+        detailVC.array = pictures
+        detailVC.selectedIndex = indexPath.row + 1
         detailVC.selectedImage = pictures[indexPath.row]
         navigationController?.pushViewController(detailVC, animated: true)
     }

@@ -13,11 +13,13 @@ class DetailViewController: UIViewController {
     let commonSuperview = UIView()
     
     var selectedImage: String?
+    var array = [String]()
+    var selectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = selectedImage
+        title = "\(selectedIndex) of \(array.count)"
         navigationItem.largeTitleDisplayMode = .never
         
         commonSuperview.translatesAutoresizingMaskIntoConstraints = false
