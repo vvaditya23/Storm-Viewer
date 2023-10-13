@@ -41,6 +41,7 @@ class ViewController: UIViewController {
             if item.hasPrefix("nssl") {
                 pictures.append(item)
             }
+            pictures.sort()
         }
 //        print(pictures)
     }
