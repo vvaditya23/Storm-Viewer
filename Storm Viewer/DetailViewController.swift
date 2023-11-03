@@ -42,6 +42,9 @@ class DetailViewController: UIViewController {
         if let imageToLoad = selectedImage {
             imageView.image = UIImage(named: imageToLoad)
         }
+        
+        //add the share button on the right side of nav controller
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -51,15 +54,21 @@ class DetailViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         navigationController?.hidesBarsOnTap = false
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @objc func shareTapped() {
+        guard let image = imageView.image?.jpegData(compressionQuality: 1) else {
+            print("Error in image")
+            return
+        }
+        
+        //the sheet that pops up when user clicks on share and allows user to select optios to share
+        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
+        //below line of code is essential for it to show up on iPad
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
-    */
+}
 
+extension DetailViewController {
+   
 }
